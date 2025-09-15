@@ -20,7 +20,7 @@ The project follows a modular architecture with clear separation of concerns. Fr
 	![Project Architecture Diagram](attachments/architecture-diagram.png)
 ### User Flow
 
-![User Flow](attachments/user-flow.png)
+![User Flow](attachments/user-flo.png)
 
 ### Route Matching Algorithm
 
