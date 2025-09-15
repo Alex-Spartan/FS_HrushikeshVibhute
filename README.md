@@ -20,14 +20,16 @@ The project follows a modular architecture with clear separation of concerns. Fr
 	![Project Architecture Diagram](attachments/architecture-diagram.png)
 ### User Flow
 
-<!-- Attach user flow diagram here -->
-![user Flow](attachments\User flow.png)
+![User Flow](attachments/user-flow.png)
 
 ### Route Matching Algorithm
 
-<!-- Attach route matching algorithm diagram here -->
+
+![Route Matching Algorithm](attachments/route-matching-algo.png)
 
 ### Real-Time Chat Flow
+
+![Real-Time Chat Flow](attachments/real-time-chat-flow.png)
 
 ## Technology Stack
 | Technology            | Alternatives                | Why This One?                                                      |
