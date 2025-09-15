@@ -116,16 +116,168 @@ The project follows a modular architecture with clear separation of concerns. Fr
 - Better developer experience
 - Reduced runtime errors
 ## Core Features Implementation
-- User authentication and authorization
-- Dynamic content rendering
-- RESTful API endpoints
-- Responsive UI components
+
+### 1. Map Interface
+
+**Components Structure:**
+```
+/components
+	/map
+		- InteractiveMap.tsx        // Main map component
+		- RouteOverlay.tsx          // Route visualization
+		- StudentMarkers.tsx        // Other student locations
+		- LocationInput.tsx         // Home/destination input
+```
+
+**Implementation Approach:**
+- Google Places Autocomplete for location input
+- Mapbox GL JS for route visualization
+- Custom markers for student locations
+- Real-time updates via WebSocket
+
+### 2. Route Matching Algorithm
+
+**Algorithm in API Route:**
+```
+/api/routes
+	- match.ts                   // Main matching logic
+	- calculate-overlap.ts       // Route similarity calculation
+	- nearby-students.ts         // Geographic proximity
+```
+
+**Matching Strategy:**
+- Geographic Proximity: Users within 2km radius
+- Route Overlap: Calculate percentage of shared path
+- Time Compatibility: Departure time within 30-minute window
+- Preferences: Gender, smoking, music preferences
+
+### 3. Real-Time Chat System
+
+**Components:**
+```
+/components/chat
+	- ChatWindow.tsx
+	- MessageBubble.tsx
+	- UserList.tsx
+
+/api/socket
+	- chat-handler.ts
+	- room-management.ts
+```
+
+### 4. Privacy & Username System
+
+- Unique Username Generation: Adjective + Noun + Number pattern
+- No Duplicate Prevention: Hash-based checking
+- Identity Protection: Real names never exposed in chat
+- Gradual Disclosure: Users choose what to share after initial contact
 
 ## Database Design
-The database schema is designed for scalability and data integrity. It includes tables/collections for users, sessions, and core entities relevant to the application domain.
+
+The database schema is designed for scalability and data integrity. Below are the main tables:
+
+### User Schema
+```sql
+CREATE TABLE users (
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	email VARCHAR(255) UNIQUE NOT NULL,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	student_id VARCHAR(100),
+	university VARCHAR(255),
+	phone VARCHAR(20),
+	profile_picture TEXT,
+	preferences JSONB,
+	created_at TIMESTAMP DEFAULT NOW(),
+	updated_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Routes Schema
+```sql
+CREATE TABLE routes (
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	user_id UUID REFERENCES users(id),
+	origin_lat DECIMAL(10, 8),
+	origin_lng DECIMAL(11, 8),
+	destination_lat DECIMAL(10, 8),
+	destination_lng DECIMAL(11, 8),
+	origin_address TEXT,
+	destination_address TEXT,
+	departure_time TIME,
+	route_polyline TEXT,
+	active BOOLEAN DEFAULT true,
+	created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Matches Schema
+```sql
+CREATE TABLE route_matches (
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	user1_id UUID REFERENCES users(id),
+	user2_id UUID REFERENCES users(id),
+	route1_id UUID REFERENCES routes(id),
+	route2_id UUID REFERENCES routes(id),
+	overlap_percentage DECIMAL(5,2),
+	status VARCHAR(20) DEFAULT 'pending', -- pending, accepted, rejected
+	created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Chat Schema
+```sql
+CREATE TABLE chat_rooms (
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	match_id UUID REFERENCES route_matches(id),
+	created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE messages (
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	room_id UUID REFERENCES chat_rooms(id),
+	sender_id UUID REFERENCES users(id),
+	message TEXT NOT NULL,
+	created_at TIMESTAMP DEFAULT NOW()
+);
+```
 
 ## API Design
-APIs follow RESTful conventions, with clear endpoints for CRUD operations. Authentication and validation are enforced at the API layer.
+
+Below are the main API endpoints for the application:
+
+### Authentication Endpoints
+```typescript
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/auth/logout
+GET    /api/auth/session
+POST   /api/auth/verify-student
+```
+
+### Route Management
+```typescript
+POST   /api/routes/create
+GET    /api/routes/user/:userId
+PUT    /api/routes/:routeId
+DELETE /api/routes/:routeId
+POST   /api/routes/find-matches
+```
+
+### Matching System
+```typescript
+GET    /api/matches/user/:userId
+POST   /api/matches/accept/:matchId
+POST   /api/matches/reject/:matchId
+GET    /api/matches/nearby
+```
+
+### Chat System
+```typescript
+GET    /api/chat/rooms/:userId
+POST   /api/chat/send
+GET    /api/chat/history/:roomId
+WebSocket: /api/socket/chat
+```
 
 ## Security & Privacy
 - Secure authentication and session management
