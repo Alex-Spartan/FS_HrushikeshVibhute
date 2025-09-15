@@ -211,6 +211,18 @@ WebSocket: /api/socket/chat
 
 
 ## Deployment Strategy
+
+### Platform Choice: Vercel
+
+**Why Vercel over alternatives:**
+
+- **vs AWS:** Simpler setup, better Next.js optimization
+- **vs Netlify:** Better backend support, edge functions
+- **vs Railway:** More mature platform, better scaling
+
+Automated build and deployment pipelines ensure reliability and scalability.
+
+
 ## Performance Optimization
 
 - **Image Optimization:** Next.js built-in optimization
@@ -225,13 +237,3 @@ WebSocket: /api/socket/chat
 - **Performance:** Vercel Analytics
 - **User Analytics:** Posthog (privacy-focused)
 - **Database Monitoring:** Built-in database metrics
-
-### Platform Choice: Vercel
-
-**Why Vercel over alternatives:**
-
-- **vs AWS:** Simpler setup, better Next.js optimization
-- **vs Netlify:** Better backend support, edge functions
-- **vs Railway:** More mature platform, better scaling
-
-Automated build and deployment pipelines ensure reliability and scalability.
