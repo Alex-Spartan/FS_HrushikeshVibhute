@@ -8,8 +8,7 @@
 5. [Database Design](#database-design)
 6. [API Design](#api-design)
 7. [Security & Privacy](#security--privacy)
-8. [Development Approach](#development-approach)
-9. [Deployment Strategy](#deployment-strategy)
+8. [Deployment Strategy](#deployment-strategy)
 
 ---
 
@@ -280,13 +279,42 @@ WebSocket: /api/socket/chat
 ```
 
 ## Security & Privacy
-- Secure authentication and session management
-- Input validation and sanitization
-- Data encryption at rest and in transit
-- Compliance with privacy standards
 
-## Development Approach
-Agile methodology with iterative development, code reviews, and automated testing. Continuous integration ensures code quality and rapid delivery.
+### Privacy Protection
+
+- **Anonymous Identity:** Generated usernames + gradual information disclosure
+- **Location Privacy:** Hidden exact addresses, encrypted communication
+- **User Control:** Students choose what personal data to share
+
+### Security Implementation
+
+- **Data Protection:** Input validation (Zod), SQL injection prevention (Prisma)
+- **Attack Prevention:** Rate limiting, CSRF/XSS protection, CSP headers
+- **Student Verification:** University email + optional ID upload
+
 
 ## Deployment Strategy
-The application is deployed using cloud platforms (e.g., Vercel, AWS). Automated build and deployment pipelines ensure reliability and scalability.
+## Performance Optimization
+
+- **Image Optimization:** Next.js built-in optimization
+- **Code Splitting:** Automatic route-based splitting
+- **Caching:** Redis for sessions, SWR for API calls
+- **CDN:** Vercel's global edge network
+- **Database Optimization:** Proper indexing for spatial queries
+
+## Monitoring & Analytics
+
+- **Error Tracking:** Sentry
+- **Performance:** Vercel Analytics
+- **User Analytics:** Posthog (privacy-focused)
+- **Database Monitoring:** Built-in database metrics
+
+### Platform Choice: Vercel
+
+**Why Vercel over alternatives:**
+
+- **vs AWS:** Simpler setup, better Next.js optimization
+- **vs Netlify:** Better backend support, edge functions
+- **vs Railway:** More mature platform, better scaling
+
+Automated build and deployment pipelines ensure reliability and scalability.
