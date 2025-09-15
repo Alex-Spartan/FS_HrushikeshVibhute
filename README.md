@@ -19,101 +19,18 @@ Next.js is ideal for this project because it offers a full-stack solution, letti
 The project follows a modular architecture with clear separation of concerns. Frontend pages, API routes, and database models are organized for maintainability and scalability.
 	![Project Architecture Diagram](attachments/architecture-diagram.png)
 ## Technology Stack
-### Frontend Framework
-**Next.js 14+ (App Router)**
-
-*Why:* Latest features, improved performance, better developer experience
-*Key Features:* Server components, streaming, improved routing
-
-### Mapping & Geolocation
-**Google Maps API + Mapbox GL JS**
-
-**Google Maps:**
-- Superior geocoding accuracy
-- Comprehensive places database
-- Reliable routing algorithms
-*Why over alternatives:* Most accurate for educational institutions
-
-**Mapbox:**
-- Better customization for route visualization
-- More cost-effective for high-usage scenarios
-*Why over Leaflet:* Better performance with large datasets
-
-### Database
-**PostgreSQL + Redis**
-
-**PostgreSQL:**
-- *Why:* ACID compliance for user data integrity
-- PostGIS extension for spatial queries
-- Better than MongoDB for relational user/route data
-
-**Redis:**
-- *Why:* Session management and real-time chat caching
-- Faster than in-memory alternatives
-
-### Authentication
-**NextAuth.js**
-
-*Why over Firebase Auth:*
-- Better integration with Next.js
-- More customizable for student verification
-- Self-hosted control for privacy
-
-*Features:*
-- Multiple providers (Google, university SSO)
-- Custom student ID verification
-- JWT tokens with refresh
-
-### Real-Time Communication
-**Socket.io**
-
-*Why over Pusher:*
-- Self-hosted control
-- Better for privacy-sensitive data
-- More cost-effective at scale
-
-*Why over WebRTC:*
-- Simpler implementation for chat
-- Better fallback support
-
-### State Management
-**Zustand + SWR**
-
-**Zustand:**
-- *Why over Redux:* Simpler setup, better TypeScript support
-- *Why over Context:* Better performance for frequent updates
-
-**SWR:**
-- *Why:* Excellent caching for API routes
-- Background revalidation for live data
-
-### Styling
-**Tailwind CSS**
-
-*Why over Styled Components:*
-- Better performance (compile-time)
-- Faster development
-- Smaller bundle size
-
-*Why over Material-UI:*
-- More customizable
-- Better for map interfaces
-
-### Form Handling
-**React Hook Form + Zod**
-
-**React Hook Form:**
-- *Why over Formik:* Better performance, smaller bundle
-
-**Zod:**
-- *Why:* Runtime validation matching TypeScript types
-
-### Type Safety
-**TypeScript**
-
-- Essential for location data accuracy
-- Better developer experience
-- Reduced runtime errors
+| Technology            | Alternatives                | Why This One?                                                      |
+|-----------------------|-----------------------------|--------------------------------------------------------------------|
+| Next.js 14+           | React, Vue, Angular         | SSR/SSG, App Router, best Next.js support, developer experience    |
+| Mapbox GL JS          | Google Maps, Leaflet        | High customization, open-source, better pricing, large dataset support |
+| PostgreSQL            | MongoDB, MySQL              | ACID compliance, spatial queries (PostGIS), relational integrity    |
+| Redis                 | Memcached, in-memory cache  | Fast session management, real-time chat caching                     |
+| NextAuth.js           | Firebase Auth, Auth0        | Next.js integration, custom student verification, privacy control   |
+| Socket.io             | Pusher, WebRTC              | Self-hosted, privacy, cost-effective, simple chat implementation    |
+| Zustand + SWR         | Redux, Context, React Query | Simple setup, TypeScript support, API caching, live data revalidation |
+| Tailwind CSS          | Styled Components, MUI      | Compile-time performance, fast dev, customizable, small bundle      |
+| React Hook Form + Zod | Formik, Yup                 | Fast, small bundle, runtime validation matches TypeScript types     |
+| TypeScript            | JavaScript                  | Location data accuracy, developer experience, reduced runtime errors|
 ## Core Features Implementation
 
 ### 1. Map Interface
