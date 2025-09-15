@@ -1,3 +1,15 @@
+## User Flow
+
+<!-- Attach user flow diagram here -->
+![user Flow](attachments\User flow.png)
+
+## Route Matching Algorithm
+
+<!-- Attach route matching algorithm diagram here -->
+
+## Real-Time Chat Flow
+
+<!-- Attach real-time chat flow diagram here -->
 # Project README
 
 ## Table of Contents
