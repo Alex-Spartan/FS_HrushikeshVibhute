@@ -1,15 +1,3 @@
-## User Flow
-
-<!-- Attach user flow diagram here -->
-![user Flow](attachments\User flow.png)
-
-## Route Matching Algorithm
-
-<!-- Attach route matching algorithm diagram here -->
-
-## Real-Time Chat Flow
-
-<!-- Attach real-time chat flow diagram here -->
 # Project README
 
 ## Table of Contents
@@ -30,6 +18,17 @@ Next.js is ideal for this project because it offers a full-stack solution, letti
 ## Project Architecture Overview
 The project follows a modular architecture with clear separation of concerns. Frontend pages, API routes, and database models are organized for maintainability and scalability.
 	![Project Architecture Diagram](attachments/architecture-diagram.png)
+### User Flow
+
+<!-- Attach user flow diagram here -->
+![user Flow](attachments\User flow.png)
+
+### Route Matching Algorithm
+
+<!-- Attach route matching algorithm diagram here -->
+
+### Real-Time Chat Flow
+
 ## Technology Stack
 | Technology            | Alternatives                | Why This One?                                                      |
 |-----------------------|-----------------------------|--------------------------------------------------------------------|
